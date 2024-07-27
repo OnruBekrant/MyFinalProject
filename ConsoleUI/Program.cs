@@ -12,7 +12,5 @@ internal class Program
         {
             Console.WriteLine(product.ProductName);
         }
-
-        Console.WriteLine("Hello, World!");
     }
 }
