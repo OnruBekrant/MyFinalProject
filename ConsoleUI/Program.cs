@@ -8,11 +8,29 @@ internal class Program
     //Open Closed Principle
     private static void Main(string[] args)
     {
-        ProductManager productManager = new ProductManager(new EfProductDal());
- 
-        foreach (var product in productManager.GetByUnitPrice(40,100))
+        //Data Transformation Object
+        ProductTest();
+        //IoC
+        //CategoryTest();
+
+    }
+
+    private static void CategoryTest()
+    {
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        foreach (var category in categoryManager.GetAll())
         {
-            Console.WriteLine(product.ProductName);
+            Console.WriteLine(category.CategoryName);
+        }
+    }
+
+    private static void ProductTest()
+    {
+        ProductManager productManager = new ProductManager(new EfProductDal());
+
+        foreach (var product in productManager.GetProducDetails())
+        {
+            Console.WriteLine(product.ProductName + " / " + product.CategoryName);
         }
     }
 }
