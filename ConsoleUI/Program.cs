@@ -28,9 +28,16 @@ internal class Program
     {
         ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var product in productManager.GetProducDetails())
+        var result = productManager.GetProductDetails();
+
+        if (result.Success == true)
         {
-            Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+
+            foreach (var product in productManager.GetProducDetails().Data)
+            {
+                Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+            }
         }
+        else { Console.WriteLine(result.Message); }
     }
 }
